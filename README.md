@@ -26,7 +26,7 @@
 
 1. Создать Deployment приложения, состоящего из контейнеров nginx и multitool.
 
-[ConfigMapDep.yaml]()
+[deployment.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/deployment.yaml)
 
 ```
 apiVersion: apps/v1
@@ -111,7 +111,7 @@ root@baranov:/home/baranovsa/kube_2.3#
 
 4. Сделать простую веб-страницу и подключить её к Nginx с помощью ConfigMap. Подключить Service и показать вывод curl или в браузере.
 
-[index-html-configmap.yaml]()
+[index-html-configmap.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/index-html-configmap.yaml)
 
 ```
 apiVersion: v1
@@ -128,7 +128,7 @@ data:
     </html
 ```
 
-[myservice.yaml]()
+[myservice.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/myservice.yaml)
 
 ```
 apiVersion: v1
@@ -252,11 +252,11 @@ root@baranov:/home/baranovsa/kube_2.3#
 
 5. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
 
-Deployment [ConfigMapDep.yaml]()
+Deployment [deployment.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/deployment.yaml)
 
-ConfigMap [index-html-configmap.yaml]()
+ConfigMap [index-html-configmap.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/index-html-configmap.yaml)
 
-Service [myservice.yaml]()
+Service [myservice.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/myservice.yaml)
 
 Проверяем curl
 
@@ -272,7 +272,9 @@ root@baranov:/home/baranovsa/kube_2.3#
 
 И через браузер
 
-![monitoring]()
+![monitoring](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/images/12.8_kube_2.3_1.png)
+
+
 ------
 
 
@@ -280,7 +282,7 @@ root@baranov:/home/baranovsa/kube_2.3#
 
 1. Создать Deployment приложения, состоящего из Nginx.
 
-[ConfigMapDep2.yaml]()
+[ConfigMapDep2.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/ConfigMapDep2.yaml)
 
 ```
 apiVersion: apps/v1
@@ -336,7 +338,7 @@ spec:
 
 2. Создать собственную веб-страницу и подключить её как ConfigMap к приложению.
 
-[index-html-configmap.yaml]()
+[index-html-configmap.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/index-html-configmap.yaml)
 
 ```
 apiVersion: v1
@@ -366,15 +368,16 @@ writing new private key to 'tls.key'
 root@baranov:/home/baranovsa/kube_2.3#
 
 ```
-[tls.crt]()
+[tls.crt](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/tls.crt)
 
-[tls.key]()
+[tls.key](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/tls.key)
+
 
 4. Создать Ingress и необходимый Service, подключить к нему SSL в вид. Продемонстировать доступ к приложению по HTTPS. 
 
 Создаем ингресс и сервис
 
-ingress [ingress.yaml]()
+ingress [ingress.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/ingress.yaml)
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -399,7 +402,7 @@ spec:
       secretName: my-app-secret-tls
 ```
 
-myservice2 [myservice.yaml]()
+myservice2 [myservice.yaml](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/myservice.yaml)
 
 ```
 apiVersion: v1
@@ -482,12 +485,12 @@ root@baranov:/home/baranovsa/kube_2.3# kubectl get cm
 NAME               	DATA   AGE
 index-html-configmap   1  	3h4m
 kube-root-ca.crt   	1  	33d
-root@baranov:/home/baranovsa/kube_2.3# kubectl get sc
-NAME             	PROVISIONER            	RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
-standard (default)   k8s.io/minikube-hostpath   Delete      	Immediate       	false              	33d
+root@baranov:/home/baranovsa/kube_2.3#
 ```
 
 Прописываем днс my-app.com в файл hosts и проверяем доступность измененной страницы.
+
+![monitoring](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/images/12.8_etc_hosts.png)
 
 
 ```
@@ -506,11 +509,18 @@ root@baranov:/home/baranovsa/kube_2.3#
 
 Прописываем днс my-app.com в файл hosts и проверяем доступность измененной страницы.
 
-![monitoring]()
+[Deployment](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/ConfigMapDep2.yaml)
 
-![monitoring]()
+[configmap](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/index-html-configmap.yaml)
 
-![monitoring]()
+
+![monitoring](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/images/12.8_etc_hosts.png)
+
+![monitoring](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/images/12.8_kube_2.3_2.1.png)
+
+![monitoring](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/images/12.8_kube_2.3_2.2.png)
+
+![monitoring](https://github.com/12sergey12/12.8-Kubernetes_Application-Configuration/blob/main/images/12.8_kube_2.3_2.3.png)
 
 ```
 root@baranov:/home/baranovsa/kube_2.3# curl -k https://my-app.com
